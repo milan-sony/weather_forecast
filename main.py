@@ -1,6 +1,7 @@
 import requests
 import json
 import datetime
+from notifypy import notify
 
 location = input("Enter your location : ")
 location_capitalize = location.capitalize()
@@ -154,3 +155,12 @@ def get_weather():
 
   print("\n")
   print("--------------------------------------------------------------")
+
+  # Desktop notification
+  notification = notify()
+  notification.application_name = "Weather Update"
+  notification.title = f"Weather at {city_name}"
+  notification.message = f"🌡️ Temperature: {temp_roundfig}°C      Feels like: {feels_like_roundfig}°C \n{weather_desc_capitalize}"
+  notification.icon = "./icon.png"
+  notification.audio = "./notificationsound.wav"
+  notification.send()
