@@ -42,3 +42,22 @@ def get_location(location_capitalize):
   with open('locationdata.json', 'w') as json_data_file:
     json.dump(location_jsonresponse, json_data_file)
     json_data_file.close()
+  
+  if location_jsonresponse == []:
+    print("LOCATION NOT FOUND, Please enter a major city name")
+    new_location = input("Enter new location : ")
+    new_location_capitalize = new_location.capitalize()
+    print("You have entered " + new_location_capitalize)
+    get_location(new_location_capitalize)
+  else:
+    print("LOCATION FOUND")
+    lattitude = location_jsonresponse[0]['lat']
+    print("Lattitude : "+str(lattitude))
+    longitude = location_jsonresponse[0]['lon']
+    print("Longitude : "+str(longitude))
+    print("\n")
+    print("===========================================================")
+    print("\n")
+  return lattitude, longitude
+
+lat, lon = get_location(location_capitalize)
