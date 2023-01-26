@@ -168,4 +168,4 @@ def get_weather():
 
 while True:
   get_weather()
-  sleep(10)
+  sleep(900)
