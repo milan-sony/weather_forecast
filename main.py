@@ -61,3 +61,24 @@ def get_location(location_capitalize):
   return lattitude, longitude
 
 lat, lon = get_location(location_capitalize)
+
+def get_weather():
+  url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_key}&units=metric"
+  weather_response = requests.get(url)
+  weather_response_status = weather_response.status_code
+
+  if weather_response_status != 200:
+    print("Something went wrong with the connection with the API")
+    print("Check whether you have entered a location")
+    print("Please try again")
+    exit()
+  else:
+    print("Successfully connected with the weather API \nStatus Code : "+str(weather_response_status))
+    print("\n")
+    pass
+
+  weather_jsonresponse = weather_response.json()
+
+  print("--------------------JSON DATA OF WEATHER--------------------")
+  print(weather_jsonresponse)
+  print("\n")
