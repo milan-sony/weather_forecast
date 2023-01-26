@@ -19,3 +19,4 @@ __pycache__/
 .vscode/settings.json
 /API_key
 locationdata.json
+weatherdata.json

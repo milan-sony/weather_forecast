@@ -82,3 +82,7 @@ def get_weather():
   print("--------------------JSON DATA OF WEATHER--------------------")
   print(weather_jsonresponse)
   print("\n")
+
+  with open('weatherdata.json', 'w') as json_data_file:
+    json.dump(weather_jsonresponse, json_data_file)
+    json_data_file.close()
