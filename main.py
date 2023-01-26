@@ -1,5 +1,6 @@
 import requests
 import json
+import datetime
 
 location = input("Enter your location : ")
 location_capitalize = location.capitalize()
@@ -86,3 +87,70 @@ def get_weather():
   with open('weatherdata.json', 'w') as json_data_file:
     json.dump(weather_jsonresponse, json_data_file)
     json_data_file.close()
+
+  # Country
+  country = weather_jsonresponse['sys']['country']
+  print(f"Country: {country}")
+
+  # City name
+  city_name = weather_jsonresponse['name']
+  print(f"City name: {city_name}")
+
+  # Time
+  time = weather_jsonresponse['timezone']
+  # Timezone shift in seconds from UTC
+  timezone_offset = time
+  now = datetime.datetime.utcnow()
+  offset = datetime.timedelta(seconds=timezone_offset)
+  local_time = now + offset
+  print(f"Time: {local_time}")
+
+  # Temperature
+  temperature = weather_jsonresponse['main']['temp']
+  temp_roundfig = round(temperature)
+  print(f"Current temperature: {temp_roundfig}°C ")
+
+  # Feels like
+  feels_like = weather_jsonresponse['main']['feels_like']
+  feels_like_roundfig = round(feels_like)
+  print(f"Feels like: {feels_like_roundfig}°C")
+
+  # Minimum temperature
+  temperature_min = weather_jsonresponse['main']['temp_min']
+  temperature_min_roundfig = round(temperature_min)
+  print(f"Minimum temperature: {temperature_min_roundfig}°C")
+
+  # Maximum temperature
+  temperature_max = weather_jsonresponse['main']['temp_max']
+  temperature_max_roundfig = round(temperature_max)
+  print(f"Maximum temperature: {temperature_max_roundfig}°C")
+
+  # Humidity
+  humidity = weather_jsonresponse['main']['humidity']
+  print(f"Humidity: {humidity}%")
+
+  # Weather condition
+  weather_condition = weather_jsonresponse['weather'][0]['main']
+  print(f"Weather condition: {weather_condition}")
+
+  # Weather description
+  weather_description = weather_jsonresponse['weather'][0]['description']
+  weather_desc_capitalize = weather_description.capitalize()
+  print(f"Weather description: {weather_desc_capitalize}")
+
+  # Sunrise
+  sunrise = weather_jsonresponse['sys']['sunrise']
+  # Converting unix UTC sunrise time to local time
+  unix_sunriset_time = sunrise
+  local_sunrise_time = datetime.datetime.fromtimestamp(unix_sunriset_time)
+  print("Sunrise: ", local_sunrise_time.strftime("%Y-%m-%d %H:%M:%S"))
+
+  # Sunset
+  sunset = weather_jsonresponse['sys']['sunset']
+  # Converting unix UTC sunset time to local time
+  unix_sunset_time = sunset
+  local_sunset_time = datetime.datetime.fromtimestamp(unix_sunset_time)
+  print("Sunset: ", local_sunset_time.strftime("%Y-%m-%d %H:%M:%S"))
+
+  print("\n")
+  print("--------------------------------------------------------------")
