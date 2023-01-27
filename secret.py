@@ -1,1 +1,1 @@
-API_key = "Your OpenWeather API KEY"
+API_key = "Paste your OpenWeather API KEY here"
