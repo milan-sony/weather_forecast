@@ -1,4 +1,5 @@
 import requests
+from secret import API_key
 import json
 import datetime
 from notifypy import Notify
@@ -15,11 +16,6 @@ else:
   pass
 
 print("You have entered the location " +location_capitalize)
-
-# Read API key from API file
-API_key_file = open("API_key", "r")
-API_key = API_key_file.read()
-API_key_file.close()
 
 def get_location(location_capitalize):
   url = f"http://api.openweathermap.org/geo/1.0/direct?q={location_capitalize}&limit=5&appid={API_key}"
