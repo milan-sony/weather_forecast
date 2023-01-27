@@ -24,7 +24,8 @@ def get_location(location_capitalize):
 
   if response_status != 200:
     print("Something went wrong with the connection from API")
-    print("Check whether you have entered the location")
+    print("Check whether you have entered the location or")
+    print("Check whether you have added API KEY and it is correct")
     print("Please try again")
     exit()
   else:
